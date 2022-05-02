@@ -14,10 +14,10 @@
             Name = name;
         }
 
-        public void AddProductToCategory(string name, string description, decimal price, string image, Guid categoryId, Guid supplierId)
+
+        public void UpdateCategory(string name)
         {
-            var product = new  Product(name, description, price, image, categoryId, supplierId);
-            _products.Add(product);
+            Name=name;
         }
     }
 }

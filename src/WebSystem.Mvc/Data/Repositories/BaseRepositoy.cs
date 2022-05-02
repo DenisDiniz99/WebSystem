@@ -29,9 +29,9 @@ namespace WebSystem.Mvc.Data.Repositories
             await SaveChangeAsync();
         }
 
-        public virtual async Task UpdateAsync(Guid id)
+        public virtual async Task UpdateAsync(T entity)
         {
-            _dbSet.Update(_dbSet.Find(id));
+            _dbSet.Update(entity);
             await SaveChangeAsync();
         }
 
