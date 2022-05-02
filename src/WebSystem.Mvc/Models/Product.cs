@@ -13,6 +13,7 @@
         public Guid SupplierId { get; private set; }
         public Supplier Supplier { get; private set; }
 
+        public Product() { }
 
         public Product(string name, string description, decimal price, string image, Guid categoryId, Guid supplierId)
         {
@@ -22,7 +23,7 @@
             Image = image;
             CategoryId = categoryId;
             SupplierId = supplierId;
-            RegistrationDate = DateTime.Now;
+            RegistrationDate = DateTime.Now.Date;
             Active = true;
         }
 

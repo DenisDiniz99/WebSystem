@@ -9,7 +9,7 @@ namespace WebSystem.Mvc.Models
         public string Description { get; private set; }
         public string Phone { get; private set; }
         public string Contact { get; private set; }
-        public Email? Email { get; private set; }
+        public Email Email { get; private set; }
         public Document Document { get; private set; }
         public Address Address { get; private set; }
         public DateTime RegistrationDate { get; private set; }
@@ -18,7 +18,8 @@ namespace WebSystem.Mvc.Models
         private readonly List<Product> _products = new List<Product>();
         public IReadOnlyCollection<Product> Products => _products;
 
-        public Supplier(string name, string corporateName, string description, string phone, string contact, Email? email, Document document, Address address)
+        public Supplier() { }
+        public Supplier(string name, string corporateName, string description, string phone, string contact, Email email, Document document, Address address)
         {
             Name = name;
             CorporateName = corporateName;
@@ -28,7 +29,7 @@ namespace WebSystem.Mvc.Models
             Email = email;
             Document = document;
             Address = address;
-            RegistrationDate = DateTime.Now;
+            RegistrationDate = DateTime.Now.Date;
             Active = true;
         }
 

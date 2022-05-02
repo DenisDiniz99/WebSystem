@@ -22,6 +22,9 @@ namespace WebSystem.Mvc.Validations
             RuleFor(p => p.Price)
                 .NotNull()
                 .WithMessage("Informe um preço para o produto.");
+
+            RuleFor(p => p.Category)
+                .SetValidator(new CategoryValidator());
         }
     }
 }

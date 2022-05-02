@@ -12,22 +12,26 @@ namespace WebSystem.Mvc.Validations
             RuleFor(s => s.Name)
                 .NotEmpty()
                 .WithMessage("Informe o nome do fornecedor.")
-                .Length(2, 255)
-                .WithMessage("O nome do fornecedor deve conter entre 0 e 255 caracteres");
+                .Length(2, 100)
+                .WithMessage("O nome do fornecedor deve conter entre 0 e 100 caracteres");
+
+            RuleFor(s => s.CorporateName)
+                .Length(2, 100)
+                .WithMessage("A Razão Social deve conter entre 2 e 100 caracteres.");
 
             RuleFor(s => s.Description)
                 .NotEmpty()
                 .WithMessage("Informe uma descrição para o fornecedor.")
                 .Length(2, 255)
-                .WithMessage("A descrição do fornecedor deve conter entre 0 e 255 caracteres");
+                .WithMessage("A descrição do fornecedor deve conter entre 2 e 255 caracteres.");
 
             RuleFor(s => s.Phone)
                 .NotEmpty()
                 .WithMessage("Informe um número de telefone para o fornecedor.");
 
             RuleFor(s => s.Contact)
-                .Length(2, 100)
-                .WithMessage("O nome de contato do forncedor deve conter entre 2 e 100 caracteres.");
+                .Length(2, 50)
+                .WithMessage("O nome de contato do forncedor deve conter entre 2 e 50 caracteres.");
 
             When(s => s.Document.Type == EDocumentType.Cpf, () =>
             {
