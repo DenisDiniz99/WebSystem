@@ -47,14 +47,16 @@
             Category = category;
         }
 
-        public void UpdateProduct(string name, string description, decimal price, string image, Guid categoryId, Guid supplierId)
+        public void UpdateSupplier(Supplier supplier)
+        {
+            Supplier = supplier;
+        }
+
+        public void UpdateProduct(string name, string description, decimal price)
         {
             Name = name;
             Description= description;
             Price = price;
-            Image = image;
-            CategoryId= categoryId;
-            SupplierId= supplierId;
         }
     }
 }

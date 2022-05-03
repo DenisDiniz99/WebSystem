@@ -10,9 +10,10 @@ namespace WebSystem.Mvc.Services
         private readonly AbstractValidator<Category> _validator;
 
 
-        public CategoryService(ICategoryRepository categoryRepository)
+        public CategoryService(ICategoryRepository categoryRepository, AbstractValidator<Category> validator)
         {
             _categoryRepository = categoryRepository;
+            _validator = validator;
         }
 
         public async Task ServiceSaveAsync(string categoryName)

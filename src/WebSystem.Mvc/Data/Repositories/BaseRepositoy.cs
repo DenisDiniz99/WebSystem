@@ -3,7 +3,7 @@ using WebSystem.Mvc.Interfaces;
 
 namespace WebSystem.Mvc.Data.Repositories
 {
-    public class BaseRepositoy<T> : IRepository<T> where T : class
+    public abstract class BaseRepositoy<T> : IRepository<T> where T : class
     {
         private readonly AppContext _appContext;
         private readonly DbSet<T> _dbSet;

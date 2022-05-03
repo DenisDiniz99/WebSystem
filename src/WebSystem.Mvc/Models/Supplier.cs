@@ -68,5 +68,14 @@ namespace WebSystem.Mvc.Models
         {
             Document = document;
         }
+
+        public void UpdateSupplier(string name, string corporateName, string description, string phone, string contact)
+        {
+            Name = name;
+            CorporateName = corporateName;
+            Description = description;
+            Phone = phone;
+            Contact = contact;
+        }
     }
 }
