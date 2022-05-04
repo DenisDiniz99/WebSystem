@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
-using WebSystem.Mvc.Interfaces;
-using WebSystem.Mvc.Models;
+using WebSystem.Mvc.Core.Interfaces;
+using WebSystem.Mvc.Core.Models;
 
 namespace WebSystem.Mvc.Services
 {

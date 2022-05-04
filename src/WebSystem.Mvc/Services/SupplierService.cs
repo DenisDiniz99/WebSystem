@@ -1,8 +1,8 @@
 ﻿using FluentValidation;
-using WebSystem.Mvc.Enums;
-using WebSystem.Mvc.Interfaces;
-using WebSystem.Mvc.Models;
-using WebSystem.Mvc.ValuesObject;
+using WebSystem.Mvc.Core.Enums;
+using WebSystem.Mvc.Core.Interfaces;
+using WebSystem.Mvc.Core.Models;
+using WebSystem.Mvc.Core.ValuesObject;
 
 namespace WebSystem.Mvc.Services
 {
