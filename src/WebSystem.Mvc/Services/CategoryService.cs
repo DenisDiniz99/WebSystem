@@ -1,23 +1,19 @@
-﻿using FluentValidation;
-using FluentValidation.Results;
-using WebSystem.Mvc.Core.Interfaces;
+﻿using WebSystem.Mvc.Core.Interfaces;
 using WebSystem.Mvc.Core.Models;
 using WebSystem.Mvc.Core.Validations;
 
 namespace WebSystem.Mvc.Services
 {
-    public class CategoryService : ICategoryService
+    public class CategoryService : BaseService, ICategoryService
     {
         private readonly ICategoryRepository _categoryRepository;
-        private readonly INotifier _notifier;
         private CategoryValidator validator;
 
 
         public CategoryService(ICategoryRepository categoryRepository, 
-                                INotifier notifier)
+                                IHandleNotification handle) : base(handle)
         {
             _categoryRepository = categoryRepository;
-            _notifier = notifier;
             validator = new CategoryValidator();
         }
 
@@ -29,7 +25,7 @@ namespace WebSystem.Mvc.Services
 
             if (!result.IsValid)
             {
-                _notifier.Execute(result);
+                Execute(result);
                 return;
             }
             
@@ -49,7 +45,7 @@ namespace WebSystem.Mvc.Services
 
             if (!result.IsValid)
             {
-                _notifier.Execute(result);
+                Execute(result);
                 return;
             }
 

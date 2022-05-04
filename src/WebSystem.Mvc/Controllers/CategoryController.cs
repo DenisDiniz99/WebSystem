@@ -13,7 +13,8 @@ namespace WebSystem.Mvc.Controllers
 
         public CategoryController(ICategoryRepository categoryRepository, 
                                     ICategoryService categoryService,
-                                    IMapper mapper)
+                                    IMapper mapper,
+                                    IHandleNotification handleNotification) : base(handleNotification)
         {
             _categoryRepository = categoryRepository;
             _categoryService = categoryService;
@@ -43,14 +44,25 @@ namespace WebSystem.Mvc.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(CategoryViewModel category)
+        public async Task<IActionResult> Create(CategoryViewModel categoryViewModel)
         {
             if (!ModelState.IsValid)
                 return BadRequest();
 
-            await _categoryService.ServiceSaveAsync(category.Name);
+            await _categoryService.ServiceSaveAsync(categoryViewModel.Name);
 
-            return Ok();
+            if (_handleNotification.HasNotification())
+            {
+                var notifications = _handleNotification.GetNotifications();
+                foreach (var notification in notifications)
+                {
+                    AddErrorsModelState(notification.Message);
+                }
+
+                return View(categoryViewModel);
+            }
+
+            return RedirectToAction("Index");
         }
     }
 }

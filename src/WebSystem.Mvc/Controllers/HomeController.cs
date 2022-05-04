@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using WebSystem.Mvc.Core.Interfaces;
 using WebSystem.Mvc.ViewModels;
 
 namespace WebSystem.Mvc.Controllers
@@ -8,7 +9,7 @@ namespace WebSystem.Mvc.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IHandleNotification handleNotification) : base(handleNotification)
         {
             _logger = logger;
         }

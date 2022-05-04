@@ -6,20 +6,18 @@ using WebSystem.Mvc.Core.ValuesObject;
 
 namespace WebSystem.Mvc.Services
 {
-    public class SupplierService : ISupplierService
+    public class SupplierService : BaseService, ISupplierService
     {
         private readonly ISupplierRepository _supplierRepository;
         private readonly IProductRepository _productRepository;
-        private readonly INotifier _notifier;
         private SupplierValidator validator;
 
         public SupplierService(ISupplierRepository supplierRepository, 
                                 IProductRepository productRepository,
-                                INotifier notifier)
+                                IHandleNotification handle) : base(handle)
         {
             _supplierRepository = supplierRepository;
             _productRepository = productRepository;
-            _notifier = notifier;
             validator = new SupplierValidator();
         }
 
@@ -31,7 +29,7 @@ namespace WebSystem.Mvc.Services
 
             if (!result.IsValid)
             {
-                _notifier.Execute(result);
+                Execute(result);
                 return;
             }
 
@@ -51,7 +49,7 @@ namespace WebSystem.Mvc.Services
 
             if (!result.IsValid)
             {
-                _notifier.Execute(result);
+                Execute(result);
                 return;
             }
 
@@ -73,7 +71,7 @@ namespace WebSystem.Mvc.Services
 
             if (!result.IsValid)
             {
-                _notifier.Execute(result);
+                Execute(result);
                 return;
             }
 
@@ -95,7 +93,7 @@ namespace WebSystem.Mvc.Services
 
             if (!result.IsValid)
             {
-                _notifier.Execute(result);
+                Execute(result);
                 return;
             }
 
@@ -117,7 +115,7 @@ namespace WebSystem.Mvc.Services
 
             if (!result.IsValid)
             {
-                _notifier.Execute(result);
+                Execute(result);
                 return;
             }
 

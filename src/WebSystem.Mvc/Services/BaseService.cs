@@ -1,13 +1,14 @@
 ﻿using FluentValidation.Results;
 using WebSystem.Mvc.Core.Interfaces;
+using WebSystem.Mvc.Core.Notifications;
 
-namespace WebSystem.Mvc.Core.Notifications
+namespace WebSystem.Mvc.Services
 {
-    public class Notifier : INotifier
+    public abstract class BaseService
     {
         private readonly IHandleNotification _handle;
 
-        public Notifier(IHandleNotification handle)
+        public BaseService(IHandleNotification handle)
         {
             _handle = handle;
         }

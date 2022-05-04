@@ -4,23 +4,21 @@ using WebSystem.Mvc.Core.Validations;
 
 namespace WebSystem.Mvc.Services
 {
-    public class ProductService : IProductService
+    public class ProductService : BaseService, IProductService
     {
         private readonly IProductRepository _productRepository;
         private readonly ICategoryRepository _categoryRepository;
         private readonly ISupplierRepository _supplierRepository;
-        private INotifier _notifier;
         private ProductValidator validator;
 
-        public ProductService(IProductRepository productRepository, 
-                                ICategoryRepository categoryRepository, 
-                                ISupplierRepository supplierRepository, 
-                                INotifier notifier)
+        public ProductService(IProductRepository productRepository,
+                                ICategoryRepository categoryRepository,
+                                ISupplierRepository supplierRepository,
+                                IHandleNotification handle) : base(handle)
         {
             _productRepository = productRepository;
             _categoryRepository = categoryRepository;
             _supplierRepository = supplierRepository;
-            _notifier = notifier;
             validator = new ProductValidator();
         }
 
@@ -32,7 +30,7 @@ namespace WebSystem.Mvc.Services
 
             if (!result.IsValid)
             {
-                _notifier.Execute(result);
+                Execute(result);
                 return;
             }
 
@@ -56,7 +54,7 @@ namespace WebSystem.Mvc.Services
 
             if (!result.IsValid)
             {
-                _notifier.Execute(result);
+                Execute(result);
                 return;
             }
 
@@ -93,7 +91,7 @@ namespace WebSystem.Mvc.Services
 
             if (!result.IsValid)
             {
-                _notifier.Execute(result);
+                Execute(result);
                 return;
             }
 
