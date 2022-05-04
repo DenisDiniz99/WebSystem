@@ -1,6 +1,6 @@
-﻿using FluentValidation;
-using WebSystem.Mvc.Core.Interfaces;
+﻿using WebSystem.Mvc.Core.Interfaces;
 using WebSystem.Mvc.Core.Models;
+using WebSystem.Mvc.Core.Validations;
 
 namespace WebSystem.Mvc.Services
 {
@@ -9,22 +9,32 @@ namespace WebSystem.Mvc.Services
         private readonly IProductRepository _productRepository;
         private readonly ICategoryRepository _categoryRepository;
         private readonly ISupplierRepository _supplierRepository;
-        private readonly AbstractValidator<Product> _validator;
+        private INotifier _notifier;
+        private ProductValidator validator;
 
-        public ProductService(IProductRepository productRepository, ICategoryRepository categoryRepository, ISupplierRepository supplierRepository, AbstractValidator<Product> validator)
+        public ProductService(IProductRepository productRepository, 
+                                ICategoryRepository categoryRepository, 
+                                ISupplierRepository supplierRepository, 
+                                INotifier notifier)
         {
             _productRepository = productRepository;
             _categoryRepository = categoryRepository;
             _supplierRepository = supplierRepository;
-            _validator = validator;
+            _notifier = notifier;
+            validator = new ProductValidator();
         }
 
         public async Task ServiceSaveAsync(string name, string description, decimal price, string image, Guid categoryId, Guid supplierId)
         {
             var product = new Product(name, description, price, image, categoryId, supplierId);
 
-            if (!_validator.Validate(product).IsValid)
+            var result = validator.Validate(product);
+
+            if (!result.IsValid)
+            {
+                _notifier.Execute(result);
                 return;
+            }
 
             var supplier = await _supplierRepository.GetByIdAsync(supplierId);
 
@@ -42,8 +52,13 @@ namespace WebSystem.Mvc.Services
 
             product.UpdateProduct(name, description, price);
 
-            if (!_validator.Validate(product).IsValid)
+            var result = validator.Validate(product);
+
+            if (!result.IsValid)
+            {
+                _notifier.Execute(result);
                 return;
+            }
 
             await _productRepository.UpdateAsync(product);
         }
@@ -74,8 +89,13 @@ namespace WebSystem.Mvc.Services
 
             product.UpdateImage(image);
 
-            if (!_validator.Validate(product).IsValid)
+            var result = validator.Validate(product);
+
+            if (!result.IsValid)
+            {
+                _notifier.Execute(result);
                 return;
+            }
 
             await _productRepository.UpdateAsync(product);
         }

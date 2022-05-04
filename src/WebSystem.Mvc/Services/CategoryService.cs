@@ -1,28 +1,38 @@
 ﻿using FluentValidation;
+using FluentValidation.Results;
 using WebSystem.Mvc.Core.Interfaces;
 using WebSystem.Mvc.Core.Models;
+using WebSystem.Mvc.Core.Validations;
 
 namespace WebSystem.Mvc.Services
 {
     public class CategoryService : ICategoryService
     {
         private readonly ICategoryRepository _categoryRepository;
-        private readonly AbstractValidator<Category> _validator;
+        private readonly INotifier _notifier;
+        private CategoryValidator validator;
 
 
-        public CategoryService(ICategoryRepository categoryRepository, AbstractValidator<Category> validator)
+        public CategoryService(ICategoryRepository categoryRepository, 
+                                INotifier notifier)
         {
             _categoryRepository = categoryRepository;
-            _validator = validator;
+            _notifier = notifier;
+            validator = new CategoryValidator();
         }
 
         public async Task ServiceSaveAsync(string categoryName)
         {
             var category = new Category(categoryName);
 
-            if (!_validator.Validate(category).IsValid)
-                return;
+            var result = validator.Validate(category);
 
+            if (!result.IsValid)
+            {
+                _notifier.Execute(result);
+                return;
+            }
+            
             await _categoryRepository.SaveAsync(category);
         }
 
@@ -35,8 +45,13 @@ namespace WebSystem.Mvc.Services
 
             category.UpdateCategory(categoryName);
 
-            if (!_validator.Validate(category).IsValid)
+            var result = validator.Validate(category);
+
+            if (!result.IsValid)
+            {
+                _notifier.Execute(result);
                 return;
+            }
 
             await _categoryRepository.UpdateAsync(category);
         }

@@ -1,7 +1,7 @@
-﻿using FluentValidation;
-using WebSystem.Mvc.Core.Enums;
+﻿using WebSystem.Mvc.Core.Enums;
 using WebSystem.Mvc.Core.Interfaces;
 using WebSystem.Mvc.Core.Models;
+using WebSystem.Mvc.Core.Validations;
 using WebSystem.Mvc.Core.ValuesObject;
 
 namespace WebSystem.Mvc.Services
@@ -10,21 +10,30 @@ namespace WebSystem.Mvc.Services
     {
         private readonly ISupplierRepository _supplierRepository;
         private readonly IProductRepository _productRepository;
-        private readonly AbstractValidator<Supplier> _validator;
+        private readonly INotifier _notifier;
+        private SupplierValidator validator;
 
-        public SupplierService(ISupplierRepository supplierRepository, IProductRepository productRepository, AbstractValidator<Supplier> validator)
+        public SupplierService(ISupplierRepository supplierRepository, 
+                                IProductRepository productRepository,
+                                INotifier notifier)
         {
             _supplierRepository = supplierRepository;
             _productRepository = productRepository;
-            _validator = validator;
+            _notifier = notifier;
+            validator = new SupplierValidator();
         }
 
         public async Task ServiceSaveAsync(string name, string corporateName, string description, string phone, string contact, Email email, Document document, Address address)
         {
             var supplier = new Supplier(name, corporateName, description, phone, contact, email, document, address);
 
-            if (!_validator.Validate(supplier).IsValid)
+            var result = validator.Validate(supplier);
+
+            if (!result.IsValid)
+            {
+                _notifier.Execute(result);
                 return;
+            }
 
             await _supplierRepository.SaveAsync(supplier);
         }
@@ -38,8 +47,13 @@ namespace WebSystem.Mvc.Services
 
             supplier.UpdateSupplier(name, corporateName, description, phone, contact);
 
-            if (!_validator.Validate(supplier).IsValid)
+            var result = validator.Validate(supplier);
+
+            if (!result.IsValid)
+            {
+                _notifier.Execute(result);
                 return;
+            }
 
             await _supplierRepository.UpdateAsync(supplier);
         }
@@ -55,8 +69,13 @@ namespace WebSystem.Mvc.Services
 
             supplier.UpdateEmail(email);
 
-            if (!_validator.Validate(supplier).IsValid)
+            var result = validator.Validate(supplier);
+
+            if (!result.IsValid)
+            {
+                _notifier.Execute(result);
                 return;
+            }
 
             await _supplierRepository.UpdateAsync(supplier);
         }
@@ -72,8 +91,13 @@ namespace WebSystem.Mvc.Services
 
             supplier.UpdateDocument(document);
 
-            if (!_validator.Validate(supplier).IsValid)
+            var result = validator.Validate(supplier);
+
+            if (!result.IsValid)
+            {
+                _notifier.Execute(result);
                 return;
+            }
 
             await _supplierRepository.UpdateAsync(supplier);
         }
@@ -89,8 +113,13 @@ namespace WebSystem.Mvc.Services
 
             supplier.UpdateAddress(address);
 
-            if (!_validator.Validate(supplier).IsValid)
+            var result = validator.Validate(supplier);
+
+            if (!result.IsValid)
+            {
+                _notifier.Execute(result);
                 return;
+            }
 
             await _supplierRepository.UpdateAsync(supplier);
         }
