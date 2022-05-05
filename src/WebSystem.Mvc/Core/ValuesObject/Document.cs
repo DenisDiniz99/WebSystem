@@ -7,6 +7,8 @@ namespace WebSystem.Mvc.Core.ValuesObject
         public EDocumentType Type { get; private set; }
         public string Number { get; private set; }
 
+        public Document() { }
+
         public Document(EDocumentType type, string number)
         {
             Type = type;

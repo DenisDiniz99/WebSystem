@@ -29,8 +29,8 @@ namespace WebSystem.Mvc.Infrastructure.Data.Maps
             builder.Property(p => p.Active)
                 .IsRequired()
                 .HasColumnType("bit");
-            builder.OwnsOne(p => p.Category)
-                .OwnsMany(c => c.Products);
+            builder.HasOne(p => p.Category)
+                .WithMany(c => c.Products);
         }
     }
 }

@@ -5,6 +5,6 @@ namespace WebSystem.Mvc.Infrastructure.Data.Repositories
 {
     public class ProductRepository : BaseRepositoy<Product>, IProductRepository
     {
-        public ProductRepository(AppContext appContext) : base(appContext) { }
+        public ProductRepository(AppDbContext appContext) : base(appContext) { }
     }
 }

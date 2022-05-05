@@ -1,0 +1,22 @@
+﻿@model CategoryViewModel;
+
+@{
+    ViewData["Title"] = "Detalhes da categoria";
+}
+
+<section>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Nome</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    @Model.Name
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>

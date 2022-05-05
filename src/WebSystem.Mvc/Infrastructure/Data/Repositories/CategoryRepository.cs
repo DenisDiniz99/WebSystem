@@ -5,6 +5,6 @@ namespace WebSystem.Mvc.Infrastructure.Data.Repositories
 {
     public class CategoryRepository : BaseRepositoy<Category>, ICategoryRepository
     {
-        public CategoryRepository(AppContext appContext) : base(appContext) { }
+        public CategoryRepository(AppDbContext appContext) : base(appContext) { }
     }
 }

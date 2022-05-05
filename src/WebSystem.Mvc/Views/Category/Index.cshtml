@@ -1,0 +1,55 @@
+﻿@model IEnumerable<CategoryViewModel>;
+
+@{
+    ViewData["Title"] = "Lista de Categorias";
+}
+
+<div class="d-flex">
+    <div class="p-2">
+        <h1 class="display-4">Categorias</h1>
+        <div class="justify-content-lg-end">
+            <a class="btn btn-primary" asp-action="Create">Nova Categoria</a>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Nome da Categoria</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                if (Model.Any())
+                {
+                    foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Name</td>
+                            <td>
+                                <div class="d-flex justify-content-end">
+                                    <div class="justify-content-around">
+                                        <a class="btn btn-success btn-sm" asp-action="Details" asp-route-id="@item.Id">Exibir</a>
+                                        <a class="btn btn-warning btn-sm" asp-action="Update" asp-route-id="@item.Id">Atualizar</a>
+                                        <a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@item.Id">Remover</a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td>Dados não encontrados...</td>
+                        <td>
+                            <a class="btn btn-primary" asp-controller="Home" asp-action="Index">Voltar</a>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>

@@ -3,9 +3,9 @@ using WebSystem.Mvc.Core.Models;
 
 namespace WebSystem.Mvc.Infrastructure.Data
 {
-    public class AppContext : DbContext
+    public class AppDbContext : DbContext
     {
-        public AppContext(DbContextOptions<AppContext> options) : base(options)
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
             ChangeTracker.AutoDetectChangesEnabled = true;
             ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
@@ -14,5 +14,11 @@ namespace WebSystem.Mvc.Infrastructure.Data
         public DbSet<Product> Products { get; set; }
         public DbSet<Supplier> Suppliers { get; set; }
         public DbSet<Category> Categories { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }
