@@ -37,26 +37,15 @@
             Active = false;
         }
 
-        public void UpdateImage(string image)
-        {
-            Image = image;
-        }
 
-        public void UpdateCategory(Category category)
-        {
-            Category = category;
-        }
-
-        public void UpdateSupplier(Supplier supplier)
-        {
-            Supplier = supplier;
-        }
-
-        public void UpdateProduct(string name, string description, decimal price)
+        public void UpdateProduct(string name, string description, decimal price, string image, Guid categoryId, Guid supplierId)
         {
             Name = name;
             Description= description;
             Price = price;
+            Image= image;
+            CategoryId = categoryId;
+            SupplierId = SupplierId;
         }
     }
 }

@@ -51,7 +51,7 @@ namespace WebSystem.Mvc.Core.Models
                 return;
             }
             var productExiting = Products.FirstOrDefault(p => p.Id == productId);
-            productExiting.UpdateProduct(name, description, price);
+            productExiting.UpdateProduct(name, description, price, image, categoryId, supplierId);
         }
 
         public void UpdateAddress(Address address)

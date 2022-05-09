@@ -4,7 +4,7 @@
     ViewData["Title"] = "Nova categoria";
 }
 
-<section>
+<div>
     <form asp-action="Create">
         <label for="name" class="col-form-label" title="Categoria">Nome da categoria</label>
         <input asp-for="Name" class="form-control form-control-sm form-text text-dark" placeholder="Categoria" id="categoria" />
@@ -13,4 +13,4 @@
         <input type="submit" class="btn btn-sm btn-success mr-2" title="Cadastrar" />
         <a class="btn btn-sm btn-danger" asp-action="Index">Cancelar</a>
     </form>
-</section>
+</div>

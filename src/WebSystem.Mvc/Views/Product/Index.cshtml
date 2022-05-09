@@ -1,0 +1,66 @@
+﻿@model IEnumerable<ProductViewModel>;
+
+@{
+    ViewData["Title"] = "Lista de Produtos";
+}
+
+
+<div class="d-flex">
+    <div class="p-2">
+        <h1 class="display-4">Produtos</h1>
+        <div class="justify-content-lg-end">
+            <a class="btn btn-primary" asp-action="Create">Novo Produto</a>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.ImageUpload)</th>
+                <th>@Html.DisplayNameFor(model => model.Name)</th>
+                <th>@Html.DisplayNameFor(model => model.Price)</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                if (Model.Any())
+                {
+                    foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                <img src="~/img/@item.Image" alt="@item.Image"/>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => item.Name);
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => item.Price);
+                            </td>
+                            <td>
+                                <div class="d-flex justify-content-end">
+                                    <div class="justify-content-around">
+                                        <a class="btn btn-success btn-sm" asp-action="Details" asp-route-id="@item.Id">Exibir</a>
+                                        <a class="btn btn-warning btn-sm" asp-action="Update" asp-route-id="@item.Id">Atualizar</a>
+                                        <a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@item.Id">Remover</a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td>Ops! Nenhum cadastro encontrado...</td>
+                        <td>
+                            <a class="btn btn-primary" asp-controller="Home" asp-action="Index">Voltar</a>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
