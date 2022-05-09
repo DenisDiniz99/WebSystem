@@ -24,7 +24,7 @@ namespace WebSystem.Mvc.Core.Validations
                 .WithMessage("A sigla do estado deve conter 2 caracteres.");
 
             RuleFor(a => a.City)
-                .Length(100)
+                .MaximumLength(100)
                 .WithMessage("O nome da cidade deve conter até 100 caracteres.");
 
             RuleFor(a => a.ZipCode)

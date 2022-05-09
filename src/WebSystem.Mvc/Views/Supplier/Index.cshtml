@@ -1,14 +1,14 @@
-﻿@model IEnumerable<CategoryViewModel>;
+﻿@model IEnumerable<SupplierViewModel>;
 
 @{
-    ViewData["Title"] = "Lista de Categorias";
+    ViewData["Title"] = "Lista de fornecedores";
 }
 
 <div class="d-flex">
     <div class="p-2">
-        <h1 class="display-4">Categorias</h1>
+        <h1 class="display-4">Fornecedores</h1>
         <div class="justify-content-lg-end">
-            <a class="btn btn-primary" asp-action="Create">Nova Categoria</a>
+            <a class="btn btn-primary" asp-action="Create">Novo Fornecedor</a>
         </div>
     </div>
 </div>
@@ -16,7 +16,10 @@
     <table class="table table-hover">
         <thead>
             <tr>
-                <th>Nome da Categoria</th>
+                <th>Nome</th>
+                <th>Razão Social</th>
+                <th>Documento</th>
+                <th>Email</th>
                 <th></th>
             </tr>
         </thead>
@@ -28,12 +31,18 @@
                     {
                         <tr>
                             <td>@item.Name</td>
+                            <td>@item.CorporateName</td>
+                            <td>@item.Document.Number</td>
+                            <td>@item.Email.EmailAddress</td>
                             <td>
                                 <div class="d-flex justify-content-end">
                                     <div class="justify-content-around">
                                         <a class="btn btn-success btn-sm" asp-action="Details" asp-route-id="@item.Id">Exibir</a>
                                         <a class="btn btn-warning btn-sm" asp-action="Update" asp-route-id="@item.Id">Atualizar</a>
                                         <a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@item.Id">Remover</a>
+                                        <a class="btn btn-secondary btn-sm" asp-action="Address" asp-route-id="@item.Id">Atualizar Endereço</a>
+                                        <a class="btn btn-primary btn-sm" asp-action="Activate" asp-route-id="@item.Id">Ativar ?</a>
+                                        <a class="btn btn-primary btn-sm" asp-action="Deactivate" asp-route-id=@item.Id>Desativar ?</a>
                                     </div>
                                 </div>
                             </td>
@@ -42,7 +51,7 @@
                 }
                 else
                 {
-                    <tr>
+                    <tr class="">
                         <td>Ops! Nenhum cadastro encontrado...</td>
                         <td>
                             <a class="btn btn-primary" asp-controller="Home" asp-action="Index">Voltar</a>
@@ -53,3 +62,5 @@
         </tbody>
     </table>
 </div>
+
+

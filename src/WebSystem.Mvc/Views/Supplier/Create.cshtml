@@ -1,0 +1,100 @@
+﻿@model SupplierViewModel;
+
+@{
+    ViewData["Title"] = "Novo  fornecedor";
+}
+
+<div>
+    <form asp-action="Create">
+        <div class="mb-3">
+            <label for="name" class="col-form-label" title="Categoria">Nome</label>
+            <input asp-for="Name" class="form-control form-control-sm form-text text-dark" placeholder="Nome do fornecedor" id="name" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label for="corp" class="col-form-label" title="Razão Social">Razão Social</label>
+            <input asp-for="CorporateName" class="form-control form-control-sm form-text text-dark" placeholder="Razão Social do fornecedor" id="corp" />
+            <span asp-validation-for="CorporateName" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label for="description" class="col-form-label" title="Descrição">Descrição</label>
+            <input asp-for="Description" class="form-control form-control-sm form-text text-dark" placeholder="Nome do fornecedor" id="description" />
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label for="phone" class="col-form-label" title="Telefone">Telefone</label>
+            <input asp-for="Phone" class="form-control form-control-sm form-text text-dark" placeholder="Telefone do fornecedor" id="phone" />
+            <span asp-validation-for="Phone" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label for="contact" class="col-form-label" title="Contato">Contato</label>
+            <input asp-for="Contact" class="form-control form-control-sm form-text text-dark" placeholder="Nome de contato" id="contact" />
+            <span asp-validation-for="Contact" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label for="docType" class="col-form-label" title="Documento">Tipo de documento</label>
+            <select class="form-select form-select-sm" aria-label="DocumentType" asp-for="Document.Type" id="docType">
+                <option selected>Escolha uma opção</option>
+                <option value="1">CPF</option>
+                <option value="2">CNPJ</option>
+            </select>
+            <span asp-validation-for="Document.Type" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label for="docNumber" class="col-form-label" title="Documento">Número do documento</label>
+            <input asp-for="Document.Number" class="form-control form-control-sm form-text text-dark" placeholder="Número do documento" id="docNumber" />
+            <span asp-validation-for="Document.Number" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label for="email" class="col-form-label" title="Email">E-mail</label>
+            <input asp-for="Email.EmailAddress" class="form-control form-control-sm form-text text-dark" placeholder="Endereço de e-mail" id="email" />
+            <span asp-validation-for="Email.EmailAddress" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label for="street" class="col-form-label" title="Rua">Rua</label>
+            <input asp-for="Address.Street" class="form-control form-control-sm form-text text-dark" placeholder="Nome da rua" id="street" />
+            <span asp-validation-for="Address.Street" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label for="number" class="col-form-label" title="Número">Número</label>
+            <input asp-for="Address.Number" class="form-control form-control-sm form-text text-dark" placeholder="Número do endereço" id="number" />
+            <span asp-validation-for="Address.Number" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label for="neighborhood" class="col-form-label" title="Bairro">Bairro</label>
+            <input asp-for="Address.Neighborhood" class="form-control form-control-sm form-text text-dark" placeholder="Nome do bairro" id="neighborhood" />
+            <span asp-validation-for="Address.Neighborhood" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label for="city" class="col-form-label" title="Cidade">Cidade</label>
+            <input asp-for="Address.City" class="form-control form-control-sm form-text text-dark" placeholder="Nome da cidade" id="city" />
+            <span asp-validation-for="Address.City" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label for="state" class="col-form-label" title="Estado">Estado</label>
+            <input asp-for="Address.State" class="form-control form-control-sm form-text text-dark" placeholder="Nome do estado" id="state" />
+            <span asp-validation-for="Address.State" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label for="zipCode" class="col-form-label" title="CEP">CEP</label>
+            <input asp-for="Address.ZipCode" class="form-control form-control-sm form-text text-dark" placeholder="Número do CEP" id="zipCode" />
+            <span asp-validation-for="Address.ZipCode" class="text-danger"></span>
+        </div>
+
+        <input type="submit" class="btn btn-sm btn-success mr-2" title="Cadastrar" />
+        <a class="btn btn-sm btn-danger" asp-action="Index">Cancelar</a>
+    </form>
+</div>

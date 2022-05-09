@@ -29,7 +29,7 @@ namespace WebSystem.Mvc.Core.Models
             Email = email;
             Document = document;
             Address = address;
-            RegistrationDate = DateTime.Now.Date;
+            RegistrationDate = DateTime.Now;
             Active = true;
         }
 
@@ -59,23 +59,15 @@ namespace WebSystem.Mvc.Core.Models
             Address = address;
         }
 
-        public void UpdateEmail(Email email)
-        {
-            Email = email;
-        }
-
-        public void UpdateDocument(Document document)
-        {
-            Document = document;
-        }
-
-        public void UpdateSupplier(string name, string corporateName, string description, string phone, string contact)
+        public void UpdateSupplier(string name, string corporateName, string description, string phone, string contact, Email email, Document document)
         {
             Name = name;
             CorporateName = corporateName;
             Description = description;
             Phone = phone;
             Contact = contact;
+            Email = email;
+            Document = document;
         }
     }
 }

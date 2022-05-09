@@ -1,0 +1,27 @@
+﻿@model SupplierViewModel;
+
+@{
+    ViewData["Title"] = "Ativar o fornecedor";
+}
+
+<div>
+    <form asp-action="Activate">
+        <div class="mb-3">
+            <label for="name" class="col-form-label" title="Fornecedor">Nome</label>
+            <input asp-for="Name" class="form-control form-control-sm form-text text-dark" readonly="readonly" id="name" />
+        </div>
+
+        <div class="mb-3">
+            <label for="corp" class="col-form-label" title="Razão Social">Razão Social</label>
+            <input asp-for="CorporateName" class="form-control form-control-sm form-text text-dark" readonly="readonly" id="corp" />
+        </div>
+
+        <div class="mb-3">
+            <label for="docNumber" class="col-form-label" title="Documento">Número do documento</label>
+            <input asp-for="Document.Number" class="form-control form-control-sm form-text text-dark" readonly="readonly" id="docNumber" />
+        </div>
+
+        <input type="submit" class="btn btn-sm btn-success mr-2" title="Ativar" />
+        <a class="btn btn-sm btn-danger" asp-action="Index">Cancelar</a>
+    </form>
+</div>

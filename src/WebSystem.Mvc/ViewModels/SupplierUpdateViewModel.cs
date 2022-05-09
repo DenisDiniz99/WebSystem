@@ -2,9 +2,8 @@
 
 namespace WebSystem.Mvc.ViewModels
 {
-    public class SupplierViewModel
+    public class SupplierUpdateViewModel
     {
-        [Key]
         public Guid Id { get; set; }
 
         [Required(ErrorMessage = "Informe o nome do fornecedor.")]
@@ -19,9 +18,6 @@ namespace WebSystem.Mvc.ViewModels
         [StringLength(255, ErrorMessage = "A descrição do fornecedor deve conter entre {0} e {2} caracteres.", MinimumLength = 2)]
         public string Description { get; set; }
 
-        public bool Active { get; set; }
-        public DateTime RegistrationDate { get; set; }
-
         [Required(ErrorMessage = "Informe o telefone do fornecedor.")]
         [DataType(DataType.PhoneNumber, ErrorMessage = "O telefone está inválido.")]
         public string Phone { get; set; }
@@ -32,7 +28,5 @@ namespace WebSystem.Mvc.ViewModels
         public DocumentViewModel Document { get; set; }
 
         public EmailViewModel Email { get; set; }
-
-        public AddressViewModel Address { get; set; }
     }
 }

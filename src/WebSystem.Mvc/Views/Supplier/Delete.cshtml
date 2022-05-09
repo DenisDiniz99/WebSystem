@@ -1,16 +1,16 @@
-﻿@model CategoryViewModel;
+﻿@model SupplierViewModel;
 
 @{
-    ViewData["Title"] = "Exclusão de categoria";
+    ViewData["Title"] = "Exclusão de fornecedor";
 }
 
-<div>
+<section>
     <form asp-action="Delete">
-        <label for="name" class="col-form-label" title="Categoria">Nome da categoria</label>
+        <label for="name" class="col-form-label" title="Nome">Nome do fornecedor</label>
         <input asp-for="Name" class="form-control form-control-sm form-text text-dark" id="name" />
         <span asp-validation-for="Name" class="text-danger"></span>
         <br />
         <input type="submit" class="btn btn-sm btn-success mr-2" title="Deletar" />
         <a class="btn btn-sm btn-danger" asp-action="Index">Cancelar</a>
     </form>
-</div>
+</section>

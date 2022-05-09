@@ -36,14 +36,14 @@ namespace WebSystem.Mvc.Services
             await _supplierRepository.SaveAsync(supplier);
         }
 
-        public async Task ServiceUpdateAsync(Guid id, string name, string corporateName, string description, string phone, string contact)
+        public async Task ServiceUpdateAsync(Guid id, string name, string corporateName, string description, string phone, string contact,Email email,Document document)
         {
             var supplier = await _supplierRepository.GetByIdAsync(id);
 
             if (supplier == null)
                 return;
 
-            supplier.UpdateSupplier(name, corporateName, description, phone, contact);
+            supplier.UpdateSupplier(name, corporateName, description, phone, contact, email, document);
 
             var result = validator.Validate(supplier);
 
@@ -56,49 +56,6 @@ namespace WebSystem.Mvc.Services
             await _supplierRepository.UpdateAsync(supplier);
         }
 
-        public async Task ServiceUpdateEmailAsync(Guid id, string emailAddress)
-        {
-            var supplier = await _supplierRepository.GetByIdAsync(id);
-
-            if (supplier == null)
-                return;
-
-            var email = new Email(emailAddress);
-
-            supplier.UpdateEmail(email);
-
-            var result = validator.Validate(supplier);
-
-            if (!result.IsValid)
-            {
-                Execute(result);
-                return;
-            }
-
-            await _supplierRepository.UpdateAsync(supplier);
-        }
-
-        public async Task ServiceUpdateDocumentAsync(Guid id, int documentType, string documentNumber)
-        {
-            var supplier = await _supplierRepository.GetByIdAsync(id);
-
-            if (supplier == null)
-                return;
-
-            var document = new Document((EDocumentType)documentType, documentNumber);
-
-            supplier.UpdateDocument(document);
-
-            var result = validator.Validate(supplier);
-
-            if (!result.IsValid)
-            {
-                Execute(result);
-                return;
-            }
-
-            await _supplierRepository.UpdateAsync(supplier);
-        }
 
         public async Task ServiceUpdateAddressAsync(Guid id, string street, string number, string neighborhood, string city, string state, string zipcode)
         {
