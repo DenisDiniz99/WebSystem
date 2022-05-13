@@ -16,10 +16,10 @@
     <table class="table table-hover">
         <thead>
             <tr>
-                <th>Nome</th>
-                <th>Razão Social</th>
-                <th>Documento</th>
-                <th>Email</th>
+                <th>@Html.DisplayNameFor(model => model.Name)</th>
+                <th>@Html.DisplayNameFor(model => model.CorporateName)</th>
+                <th>@Html.DisplayNameFor(model => model.Document.Number)</th>
+                <th>@Html.DisplayNameFor(model => model.Email)</th>
                 <th></th>
             </tr>
         </thead>
@@ -30,10 +30,10 @@
                     foreach (var item in Model)
                     {
                         <tr>
-                            <td>@item.Name</td>
-                            <td>@item.CorporateName</td>
-                            <td>@item.Document.Number</td>
-                            <td>@item.Email.EmailAddress</td>
+                            <td>@Html.DisplayFor(model => item.Name)</td>
+                            <td>@Html.DisplayFor(model => item.CorporateName)</td>
+                            <td>@Html.DisplayFor(model => item.Document.Number)</td>
+                            <td>@Html.DisplayFor(model => item.Email.EmailAddress)</td>
                             <td>
                                 <div class="d-flex justify-content-end">
                                     <div class="justify-content-around">

@@ -7,42 +7,42 @@
 <div>
     <form asp-action="Address">
         <div class="mb-3">
-            <label for="name" class="col-form-label" title="Nome">Nome</label>
-            <input asp-for="Name" class="form-control form-control-sm form-text text-dark" id="name" />
+            <label asp-for="Name" class="col-form-label"></label>
+            <input asp-for="Name" class="form-control form-control-sm form-text text-dark" />
         </div>
         <div class="mb-3">
-            <label for="street" class="col-form-label" title="Rua">Rua</label>
-            <input asp-for="Address.Street" class="form-control form-control-sm form-text text-dark" placeholder="Nome da rua" id="street" />
+            <label asp-for="Address.Street" class="col-form-label"></label>
+            <input asp-for="Address.Street" class="form-control form-control-sm form-text text-dark" placeholder="Nome da rua" />
             <span asp-validation-for="Address.Street" class="text-danger"></span>
         </div>
 
         <div class="mb-3">
-            <label for="number" class="col-form-label" title="Número">Número</label>
-            <input asp-for="Address.Number" class="form-control form-control-sm form-text text-dark" placeholder="Número do endereço" id="number" />
+            <label asp-for="Address.Number" class="col-form-label" ></label>
+            <input asp-for="Address.Number" class="form-control form-control-sm form-text text-dark" placeholder="Número do endereço" />
             <span asp-validation-for="Address.Number" class="text-danger"></span>
         </div>
 
         <div class="mb-3">
-            <label for="neighborhood" class="col-form-label" title="Bairro">Bairro</label>
-            <input asp-for="Address.Neighborhood" class="form-control form-control-sm form-text text-dark" placeholder="Nome do bairro" id="neighborhood" />
+            <label asp-for="Address.Neighborhood" class="col-form-label"></label>
+            <input asp-for="Address.Neighborhood" class="form-control form-control-sm form-text text-dark" placeholder="Nome do bairro"  />
             <span asp-validation-for="Address.Neighborhood" class="text-danger"></span>
         </div>
 
         <div class="mb-3">
-            <label for="city" class="col-form-label" title="Cidade">Cidade</label>
-            <input asp-for="Address.City" class="form-control form-control-sm form-text text-dark" placeholder="Nome da cidade" id="city" />
+            <label asp-for="Address.City" class="col-form-label" title="Cidade">Cidade</label>
+            <input asp-for="Address.City" class="form-control form-control-sm form-text text-dark" placeholder="Nome da cidade" />
             <span asp-validation-for="Address.City" class="text-danger"></span>
         </div>
 
         <div class="mb-3">
-            <label for="state" class="col-form-label" title="Estado">Estado</label>
-            <input asp-for="Address.State" class="form-control form-control-sm form-text text-dark" placeholder="Nome do estado" id="state" />
+            <label for="state" class="col-form-label" ></label>
+            <input asp-for="Address.State" class="form-control form-control-sm form-text text-dark" placeholder="Nome do estado" />
             <span asp-validation-for="Address.State" class="text-danger"></span>
         </div>
 
         <div class="mb-3">
-            <label for="zipCode" class="col-form-label" title="CEP">CEP</label>
-            <input asp-for="Address.ZipCode" class="form-control form-control-sm form-text text-dark" placeholder="Número do CEP" id="zipCode" />
+            <label asp-for="Address.ZipCode" class="col-form-label"></label>
+            <input asp-for="Address.ZipCode" class="form-control form-control-sm form-text text-dark" placeholder="Número do CEP" />
             <span asp-validation-for="Address.ZipCode" class="text-danger"></span>
         </div>
 

@@ -45,7 +45,7 @@
             Price = price;
             Image= image;
             CategoryId = categoryId;
-            SupplierId = SupplierId;
+            SupplierId = supplierId;
         }
     }
 }

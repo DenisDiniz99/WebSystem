@@ -6,8 +6,8 @@
 
 <div>
     <form asp-action="Create">
-        <label for="name" class="col-form-label" title="Categoria">Nome da categoria</label>
-        <input asp-for="Name" class="form-control form-control-sm form-text text-dark" placeholder="Categoria" id="categoria" />
+        <label asp-for="Name" class="col-form-label"></label>
+        <input asp-for="Name" class="form-control form-control-sm form-text text-dark" placeholder="Categoria" />
         <span asp-validation-for="Name" class="text-danger"></span>
         <br />
         <input type="submit" class="btn btn-sm btn-success mr-2" title="Cadastrar" />

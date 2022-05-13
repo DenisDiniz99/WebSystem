@@ -6,5 +6,6 @@ namespace WebSystem.Mvc.Infrastructure.Data.Repositories
     public class SupplierRepository : BaseRepositoy<Supplier>, ISupplierRepository
     {
         public SupplierRepository(AppDbContext appContext): base(appContext) { }
+
     }
 }

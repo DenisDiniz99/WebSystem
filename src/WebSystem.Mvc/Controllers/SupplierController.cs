@@ -30,12 +30,9 @@ namespace WebSystem.Mvc.Controllers
 
         public async Task<IActionResult> Details(Guid id)
         {
-            var supplierViewModel = _mapper.Map<SupplierViewModel>(await _supplierRepository.GetByIdAsync(id));
+            var supplierViewModel = await GetByIdAsync(id);
 
-            if (supplierViewModel == null)
-                return NotFound();
-
-            return View(supplierViewModel);
+            return (supplierViewModel == null) ? NotFound() : View(supplierViewModel);
         }
 
         public IActionResult Create()
@@ -61,48 +58,25 @@ namespace WebSystem.Mvc.Controllers
                                                     email,
                                                     document,
                                                     address);
-
-            if (_handleNotification.HasNotification())
-            {
-                var notifications = _handleNotification.GetNotifications();
-                foreach(var notification in notifications)
-                {
-                    AddErrorsModelState(notification.Message);
-                }
-                return View(supplierViewModel);
-            }
-
-            return RedirectToAction("Index");
+            
+            return HasNotification() ? View(supplierViewModel) : RedirectToAction("Index");
         }
 
 
         public async Task<IActionResult> Update(Guid id)
         {
-            var supplierViewModel = _mapper.Map<SupplierViewModel>(await _supplierRepository.GetByIdAsync(id));
+            var supplierViewModel = await GetByIdAsync(id);
 
-            if (supplierViewModel == null)
-                return NotFound();
-
-            var supplierUpdateViewModel = new SupplierUpdateViewModel();
-            supplierUpdateViewModel.Id = supplierViewModel.Id;
-            supplierUpdateViewModel.Name = supplierViewModel.Name;
-            supplierUpdateViewModel.CorporateName = supplierViewModel.CorporateName;
-            supplierUpdateViewModel.Description = supplierViewModel.Description;
-            supplierUpdateViewModel.Phone = supplierViewModel.Phone;
-            supplierUpdateViewModel.Contact = supplierViewModel.Contact;
-            supplierUpdateViewModel.Document = supplierViewModel.Document;
-            supplierUpdateViewModel.Email = supplierViewModel.Email;
-
-            
-
-            return View(supplierUpdateViewModel);
+            return (supplierViewModel == null) ? NotFound() : View(supplierViewModel);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Update(Guid id, SupplierUpdateViewModel supplierViewModel)
+        public async Task<IActionResult> Update(Guid id, SupplierViewModel supplierViewModel)
         {
             if (id != supplierViewModel.Id)
                 return NotFound();
+
+            ModelState.Remove("Address");
 
             if(!ModelState.IsValid)
                 return BadRequest();
@@ -110,33 +84,16 @@ namespace WebSystem.Mvc.Controllers
             var email = _mapper.Map<Email>(supplierViewModel.Email);
             var document = _mapper.Map<Document>(supplierViewModel.Document);
 
-            await _supplierService.ServiceUpdateAsync(supplierViewModel.Id,
-                                                        supplierViewModel.Name,
-                                                        supplierViewModel.CorporateName,
-                                                        supplierViewModel.Description,
-                                                        supplierViewModel.Phone,
-                                                        supplierViewModel.Contact,
-                                                        email,
-                                                        document);
+            await _supplierService.ServiceUpdateAsync(supplierViewModel.Id, supplierViewModel.Name, supplierViewModel.CorporateName, supplierViewModel.Description, supplierViewModel.Phone, supplierViewModel.Contact, email, document);
 
-            if (_handleNotification.HasNotification())
-            {
-                var notifications = _handleNotification.GetNotifications();
-                foreach(var notification in notifications)
-                {
-                    AddErrorsModelState(notification.Message);
-                }
-
-                return View(supplierViewModel);
-            }
-
-            return RedirectToAction("Index");
+            return HasNotification() ? View(supplierViewModel) : RedirectToAction("Index");
         }
 
         public async Task<IActionResult> Activate(Guid id)
         {
-            var supplierViewModel = _mapper.Map<SupplierViewModel>(await _supplierRepository.GetByIdAsync(id));
-            return View(supplierViewModel);
+            var supplierViewModel = await GetByIdAsync(id);
+
+            return (supplierViewModel == null) ? NotFound() : View(supplierViewModel);
         }
 
         [HttpPost, ActionName("activate")]
@@ -146,10 +103,12 @@ namespace WebSystem.Mvc.Controllers
             return RedirectToAction("Index");
         }
 
+
         public async Task<IActionResult> Deactivate(Guid id)
         {
-            var supplierViewModel = _mapper.Map<SupplierViewModel>(await _supplierRepository.GetByIdAsync(id));
-            return View(supplierViewModel);
+            var supplierViewModel = await GetByIdAsync(id);
+
+            return (supplierViewModel == null) ? NotFound() : View(supplierViewModel);
         }
 
         [HttpPost, ActionName("deactivate")]
@@ -159,43 +118,40 @@ namespace WebSystem.Mvc.Controllers
             return RedirectToAction("Index");
         }
 
+
         public async Task<IActionResult> Address(Guid id)
         {
-            return View(_mapper.Map<SupplierViewModel>(await _supplierRepository.GetByIdAsync(id)));
+            var supplierViewModel = await GetByIdAsync(id);
+
+            return (supplierViewModel == null) ? NotFound() : View(supplierViewModel);
         }
-
-
 
         [HttpPost, ActionName("address")]
         public async Task<IActionResult> UpdateAddress(Guid id, SupplierViewModel supplierViewModel)
         {
-            if (id != supplierViewModel.Id)
+            if (id != supplierViewModel.Id) 
                 return NotFound();
 
-            await _supplierService.ServiceUpdateAddressAsync(supplierViewModel.Id,
-                                                                supplierViewModel.Address.Street,
-                                                                supplierViewModel.Address.Number,
-                                                                supplierViewModel.Address.Neighborhood,
-                                                                supplierViewModel.Address.City,
-                                                                supplierViewModel.Address.State,
-                                                                supplierViewModel.Address.ZipCode);
-            if (_handleNotification.HasNotification())
-            {
-                var notifications = _handleNotification.GetNotifications();
-                foreach(var notification in notifications)
-                {
-                    AddErrorsModelState(notification.Message);
-                }
+            ModelState.Remove("Name");
+            ModelState.Remove("CorporateName");
+            ModelState.Remove("Description");
+            ModelState.Remove("Phone");
+            ModelState.Remove("Contact");
+            ModelState.Remove("Email");
+            ModelState.Remove("Document");
 
-                return View(supplierViewModel);
-            }
+            if (!ModelState.IsValid) return View(supplierViewModel);
 
-            return RedirectToAction("Index");
+            await _supplierService.ServiceUpdateAddressAsync(supplierViewModel.Id,supplierViewModel.Address.Street, supplierViewModel.Address.Number, supplierViewModel.Address.Neighborhood, supplierViewModel.Address.City, supplierViewModel.Address.State, supplierViewModel.Address.ZipCode);
+            
+            return HasNotification() ? View(supplierViewModel) : RedirectToAction("Index");
         }
 
         public async Task<IActionResult> Delete(Guid id)
         {
-            return View(_mapper.Map<SupplierViewModel>(await _supplierRepository.GetByIdAsync(id)));
+            var supplierViewModel = await GetByIdAsync(id);
+
+            return (supplierViewModel == null) ? NotFound() : View(supplierViewModel);
         }
 
         [HttpPost, ActionName("Delete")]
@@ -204,5 +160,31 @@ namespace WebSystem.Mvc.Controllers
             await _supplierService.ServiceDeleteAsync(id);
             return RedirectToAction("Index");
         }
+
+
+
+        #region Private_Methods
+
+        private async Task<SupplierViewModel> GetByIdAsync(Guid id)
+        {
+            return _mapper.Map<SupplierViewModel>(await _supplierRepository.GetByIdAsync(id));
+        }
+
+        private bool HasNotification()
+        {
+            if (_handleNotification.HasNotification())
+            {
+                var notifications = _handleNotification.GetNotifications();
+                foreach (var notification in notifications)
+                {
+                    AddErrorsModelState(notification.Message);
+                }
+                return true;
+            }
+
+            return false;
+        }
+
+        #endregion
     }
 }

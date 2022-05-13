@@ -1,0 +1,40 @@
+﻿@model ProductViewModel;
+
+@{
+    ViewData["Title"] = "Detalhes do produto";
+}
+
+<div class="container">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.ImageUpload)</th>
+                <th>@Html.DisplayNameFor(model => model.Name)</th>
+                <th>@Html.DisplayNameFor(model => model.Description)</th>
+                <th>@Html.DisplayNameFor(model => model.Price)</th>
+                <th>@Html.DisplayNameFor(model => model.Active)</th>
+                <th>@Html.DisplayNameFor(model => model.RegistrationDate)</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><img src="~/img/@Model.Image" alt="@Model.Image" /></td>
+                <td>@Html.DisplayFor(model => Model.Name)</td>
+                <td>@Html.DisplayFor(model => Model.Description)</td>
+                <td>@Html.DisplayFor(model => Model.Price)</td>
+                @{
+                    if(Model.Active)
+                    {
+                        <td>Ativo</td>
+                    }
+                    else
+                    {
+                        <td>Inativo</td>
+                    }
+                }
+                <td>@Html.DisplayFor(model => Model.RegistrationDate)</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

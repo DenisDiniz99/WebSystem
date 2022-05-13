@@ -7,18 +7,18 @@
 <div>
     <form asp-action="Deactivate">
         <div class="mb-3">
-            <label for="name" class="col-form-label" title="Fornecedor">Nome</label>
-            <input asp-for="Name" class="form-control form-control-sm form-text text-dark" readonly="readonly" id="name" />
+            <label asp-for="Name" class="col-form-label"></label>
+            <input asp-for="Name" class="form-control form-control-sm form-text text-dark" readonly="readonly" />
         </div>
 
         <div class="mb-3">
-            <label for="corp" class="col-form-label" title="Razão Social">Razão Social</label>
-            <input asp-for="CorporateName" class="form-control form-control-sm form-text text-dark" readonly="readonly" id="corp" />
+            <label asp-for="CorporateName" class="col-form-label"></label>
+            <input asp-for="CorporateName" class="form-control form-control-sm form-text text-dark" readonly="readonly" />
         </div>
 
         <div class="mb-3">
-            <label for="docNumber" class="col-form-label" title="Documento">Número do documento</label>
-            <input asp-for="Document.Number" class="form-control form-control-sm form-text text-dark" readonly="readonly" id="docNumber" />
+            <label asp-for="Document.Number" class="col-form-label" title="Documento">Número do documento</label>
+            <input asp-for="Document.Number" class="form-control form-control-sm form-text text-dark" readonly="readonly"/>
         </div>
 
         <input type="submit" class="btn btn-sm btn-success mr-2" title="Desativar" />

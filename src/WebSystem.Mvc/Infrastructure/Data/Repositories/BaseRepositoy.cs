@@ -5,8 +5,8 @@ namespace WebSystem.Mvc.Infrastructure.Data.Repositories
 {
     public abstract class BaseRepositoy<T> : IRepository<T> where T : class
     {
-        private readonly AppDbContext _appContext;
-        private readonly DbSet<T> _dbSet;
+        protected readonly AppDbContext _appContext;
+        protected readonly DbSet<T> _dbSet;
         public BaseRepositoy(AppDbContext appContext)
         {
             _appContext = appContext;

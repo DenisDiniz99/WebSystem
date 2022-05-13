@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace WebSystem.Mvc.ViewModels
@@ -24,8 +23,9 @@ namespace WebSystem.Mvc.ViewModels
         public decimal Price { get; set; }
 
         [DisplayName("Imagem")]
-        public IFormFile ImageUpload { get; set; }
-        public string Image { get; set; }
+        public IFormFile? ImageUpload { get; set; }
+
+        public string Image { get; set; } = string.Empty;
 
         [DisplayName("Situação")]
         public bool Active { get; set; }
@@ -41,7 +41,12 @@ namespace WebSystem.Mvc.ViewModels
         [DisplayName("Fornecedor")]
         public Guid SupplierId { get; set; }
 
-        public IEnumerable<SupplierViewModel> Suppliers { get; set; }
-        public IEnumerable<CategoryViewModel> Categories { get; set; }
+
+        public CategoryViewModel? Category { get; set; }
+        public SupplierViewModel? Supplier { get; set; }
+
+
+        public IEnumerable<CategoryViewModel>? Categories { get; set; }
+        public IEnumerable<SupplierViewModel>? Suppliers { get; set; }
     }
 }

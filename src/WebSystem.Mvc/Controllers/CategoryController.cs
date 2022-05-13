@@ -30,12 +30,9 @@ namespace WebSystem.Mvc.Controllers
 
         public async Task<IActionResult> Details(Guid id)
         {
-            var category = _mapper.Map<CategoryViewModel>(await _categoryRepository.GetByIdAsync(id));
+            var categoryViewModel = await GetByIdAsync(id);
 
-            if (category == null)
-                return NotFound();
-
-            return View(category);
+            return(categoryViewModel == null) ? NotFound() : View(categoryViewModel);
         }
 
 
@@ -43,7 +40,6 @@ namespace WebSystem.Mvc.Controllers
         {
             return View();
         }
-
 
         [HttpPost]
         public async Task<IActionResult> Create(CategoryViewModel categoryViewModel)
@@ -53,25 +49,16 @@ namespace WebSystem.Mvc.Controllers
 
             await _categoryService.ServiceSaveAsync(categoryViewModel.Name);
 
-            if (_handleNotification.HasNotification())
-            {
-                var notifications = _handleNotification.GetNotifications();
-                foreach (var notification in notifications)
-                {
-                    AddErrorsModelState(notification.Message);
-                }
-
-                return View(categoryViewModel);
-            }
-
-            return RedirectToAction("Index");
+            return HasNotification() ? View(categoryViewModel) : RedirectToAction("Index");
         }
+
 
         public async Task<IActionResult> Update(Guid id)
         {
-            return View(_mapper.Map<CategoryViewModel>(await _categoryRepository.GetByIdAsync(id)));
-        }
+            var categoryViewModel = await GetByIdAsync(id);
 
+            return (categoryViewModel == null) ? NotFound() : View(categoryViewModel);
+        }
 
         [HttpPost]
         public async Task<IActionResult> Update(Guid id, CategoryViewModel categoryViewModel)
@@ -84,21 +71,15 @@ namespace WebSystem.Mvc.Controllers
 
             await _categoryService.ServiceUpdateAsync(id, categoryViewModel.Name);
 
-            if (_handleNotification.HasNotification())
-            {
-                var notifications = _handleNotification.GetNotifications();
-                foreach(var notification in notifications)
-                {
-                    AddErrorsModelState(notification.Message);
-                }
-            }
-
-            return RedirectToAction("Index");
+            return HasNotification() ? View(categoryViewModel) : RedirectToAction("Index");
         }
+
 
         public async Task<IActionResult> Delete(Guid id)
         {
-            return View(_mapper.Map<CategoryViewModel>(await _categoryRepository.GetByIdAsync(id)));
+            var categoryViewModel = await GetByIdAsync(id);
+
+            return (categoryViewModel == null) ? NotFound() : View(categoryViewModel);
         }
 
         [HttpPost, ActionName("delete")]
@@ -107,5 +88,32 @@ namespace WebSystem.Mvc.Controllers
             await _categoryService.ServiceDeleteAsync(id);
             return RedirectToAction("Index");
         }
+
+
+
+
+        #region Private_Methods
+
+        private async Task<CategoryViewModel> GetByIdAsync(Guid id)
+        {
+            return _mapper.Map<CategoryViewModel>(await _categoryRepository.GetByIdAsync(id));
+        }
+
+        private bool HasNotification()
+        {
+            if (_handleNotification.HasNotification())
+            {
+                var notifications = _handleNotification.GetNotifications();
+                foreach (var notification in notifications)
+                {
+                    AddErrorsModelState(notification.Message);
+                }
+                return true;
+            }
+
+            return false;
+        }
+
+        #endregion
     }
 }

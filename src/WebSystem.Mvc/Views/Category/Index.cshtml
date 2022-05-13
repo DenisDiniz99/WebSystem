@@ -6,7 +6,7 @@
 
 <div class="d-flex">
     <div class="p-2">
-        <h1 class="display-4">Categorias</h1>
+        <h1 class="dispaly-4">Categorias</h1>
         <div class="justify-content-lg-end">
             <a class="btn btn-primary" asp-action="Create">Nova Categoria</a>
         </div>
@@ -16,7 +16,7 @@
     <table class="table table-hover">
         <thead>
             <tr>
-                <th>Nome da Categoria</th>
+                <th>@Html.DisplayNameFor(model => model.Name)</th>
                 <th></th>
             </tr>
         </thead>
@@ -27,7 +27,7 @@
                     foreach (var item in Model)
                     {
                         <tr>
-                            <td>@item.Name</td>
+                            <td>@Html.DisplayFor(model => item.Name)</td>
                             <td>
                                 <div class="d-flex justify-content-end">
                                     <div class="justify-content-around">

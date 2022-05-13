@@ -1,0 +1,26 @@
+﻿@model ProductViewModel;
+
+@{
+    ViewData["Title"] = "Desativar o produto";
+}
+
+<div class="d-flex justify-content-center">
+    <div class="card mx-auto" style="width: 400px">
+        <div class="card-body">
+            <div class="d-fle justify-content-center">
+                <img class="img-fluid" src="~/img/@Model.Image" alt="@Model.Image" />
+            </div>
+            <div class="mb-3 fs-4 d-flex justify-content-center">
+                @Model.Name
+            </div>
+        </div>
+        <div class="card-footer">
+            <form asp-action="Deactivate">
+                <div class="d-flex justify-content-center">
+                    <input type="submit" class="btn btn-sm btn-success btn-form me-2" title="Desativar" />
+                    <a class="btn btn-sm btn-danger btn-form me-2" asp-action="Index">Cancelar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

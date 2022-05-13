@@ -22,7 +22,7 @@ namespace WebSystem.Mvc.Infrastructure.Data.Maps
                 .HasColumnType("decimal");
             builder.Property(p => p.Image)
                 .IsRequired()
-                .HasColumnType("varchar");
+                .HasColumnType("varchar(100)");
             builder.Property(p => p.RegistrationDate)
                 .IsRequired()
                 .HasColumnType("date");

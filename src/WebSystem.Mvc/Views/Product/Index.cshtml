@@ -5,62 +5,64 @@
 }
 
 
-<div class="d-flex">
-    <div class="p-2">
-        <h1 class="display-4">Produtos</h1>
-        <div class="justify-content-lg-end">
-            <a class="btn btn-primary" asp-action="Create">Novo Produto</a>
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            <div class="p-0 my-3 d-flex justify-content-start">
+                <h1 class="align-content-center">Produtos</h1>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="p-0 my-4 d-flex justify-content-end">
+                <a class="btn btn-primary btn-sm me-2" asp-action="Create">Novo Produto</a>
+                <a class="btn btn-danger btn-sm" asp-controller="Home" asp-action="Index">Voltar</a>
+            </div>
         </div>
     </div>
 </div>
+
+
 <div class="container">
-    <table class="table table-hover">
-        <thead>
-            <tr>
-                <th>@Html.DisplayNameFor(model => model.ImageUpload)</th>
-                <th>@Html.DisplayNameFor(model => model.Name)</th>
-                <th>@Html.DisplayNameFor(model => model.Price)</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @{
-                if (Model.Any())
-                {
-                    foreach (var item in Model)
+    @{
+        if (!Model.Any())
+        {
+            <div class="container justify-content-center">
+                <div class="alert alert-primary text-center">
+                    <h3>Ops! Nenhum registro encontrado...</h3>
+                </div>
+            </div>
+        }
+        else
+        {
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.ImageUpload)</th>
+                        <th>@Html.DisplayNameFor(model => model.Name)</th>
+                        <th>@Html.DisplayNameFor(model => model.Price)</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
                     {
                         <tr>
-                            <td>
-                                <img src="~/img/@item.Image" alt="@item.Image"/>
-                            </td>
-                            <td>
-                                @Html.DisplayFor(model => item.Name);
-                            </td>
-                            <td>
-                                @Html.DisplayFor(model => item.Price);
-                            </td>
+                            <td><img src="~/img/@item.Image" alt="@item.Image" class="img-product" /></td>
+                            <td>@Html.DisplayFor(model => item.Name)</td>
+                            <td>@Html.DisplayFor(model => item.Price)</td>
                             <td>
                                 <div class="d-flex justify-content-end">
-                                    <div class="justify-content-around">
-                                        <a class="btn btn-success btn-sm" asp-action="Details" asp-route-id="@item.Id">Exibir</a>
-                                        <a class="btn btn-warning btn-sm" asp-action="Update" asp-route-id="@item.Id">Atualizar</a>
-                                        <a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@item.Id">Remover</a>
-                                    </div>
+                                    <a class="btn btn-primary btn-sm me-2" asp-action="Details" asp-route-id="@item.Id"><i class="fas fa-search"></i></a>
+                                    <a class="btn btn-primary btn-sm me-2" asp-action="Update" asp-route-id="@item.Id"><i class="fas fa-edit"></i></a>
+                                    <a class="btn btn-primary btn-sm me-2" asp-action="Delete" asp-route-id="@item.Id"><i class="fas fa-trash"></i></a>
+                                    <a class="btn btn-primary btn-sm me-2" asp-action="Activate" asp-route-id="@item.Id"><i class="fas fa-thumbs-up"></i></a>
+                                    <a class="btn btn-primary btn-sm me-2" asp-action="Deactivate" asp-route-id="@item.Id"><i class="fas fa-thumbs-down"></i></a>
                                 </div>
                             </td>
                         </tr>
                     }
-                }
-                else
-                {
-                    <tr>
-                        <td>Ops! Nenhum cadastro encontrado...</td>
-                        <td>
-                            <a class="btn btn-primary" asp-controller="Home" asp-action="Index">Voltar</a>
-                        </td>
-                    </tr>
-                }
-            }
-        </tbody>
-    </table>
+                </tbody>
+            </table>
+        }
+    }
 </div>
