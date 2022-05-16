@@ -4,24 +4,33 @@
     ViewData["Title"] = "Ativar o fornecedor";
 }
 
-<div>
-    <form asp-action="Activate">
-        <div class="mb-3">
-            <label asp-for="Name" class="col-form-label"></label>
-            <input asp-for="Name" class="form-control form-control-sm form-text text-dark" readonly="readonly" />
+<div class="d-flex justify-content-center mt-4">
+    <div class="card mx-auto">
+        <div class="card-header">
+            <h3 class="display-5">Ativação do Fronecedor</h3>
         </div>
+        <div class="card-body">
+            <form asp-action="Activate">
+                <div class="m-2">
+                    <label asp-for="Name" class="form-label"></label>
+                    <input asp-for="Name" class="form-control form-control-sm form-text text-dark" readonly="readonly" />
+                </div>
 
-        <div class="mb-3">
-            <label asp-for="CorporateName" class="col-form-label"></label>
-            <input asp-for="CorporateName" class="form-control form-control-sm form-text text-dark" readonly="readonly" />
+                <div class="m-2">
+                    <label asp-for="CorporateName" class="form-label"></label>
+                    <input asp-for="CorporateName" class="form-control form-control-sm form-text text-dark" readonly="readonly" />
+                </div>
+
+                <div class="m-2">
+                    <label asp-for="Document.Number" class="form-label" title="Documento">Número do documento</label>
+                    <input asp-for="Document.Number" class="form-control form-control-sm form-text text-dark" readonly="readonly" />
+                </div>
+
+                <div class="m-2">
+                    <input type="submit" class="btn btn-sm btn-success mr-2" title="Ativar" />
+                    <a class="btn btn-sm btn-danger" asp-action="Index">Cancelar</a>
+                </div>
+            </form>
         </div>
-
-        <div class="mb-3">
-            <label asp-for="Document.Number" class="col-form-label" title="Documento">Número do documento</label>
-            <input asp-for="Document.Number" class="form-control form-control-sm form-text text-dark" readonly="readonly"/>
-        </div>
-
-        <input type="submit" class="btn btn-sm btn-success mr-2" title="Ativar" />
-        <a class="btn btn-sm btn-danger" asp-action="Index">Cancelar</a>
-    </form>
+    </div>
 </div>

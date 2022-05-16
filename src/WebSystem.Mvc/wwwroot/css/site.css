@@ -1,4 +1,4 @@
-*{
+* {
     margin: 0;
     padding: 0;
 }
@@ -16,26 +16,33 @@ html {
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
 }
 
-.btn-form{
+.btn-form {
     width: 100px;
 }
 
-.img-product{
+.img-product {
     border: none;
-    width: 70px;
-    height: 100px;
+    width: 100px;
+    height: 110px;
+    margin: 0 auto;
 }
 
-.img-card{
+.img-card {
     border: none;
     width: 300px;
     height: 300px;
 }
 
-.table-product{
+.table-product {
     display: flex;
     align-items: center;
+}
+
+form{
+    width: 800px;
+    max-width: 100%;
+    margin: 0 auto;
 }

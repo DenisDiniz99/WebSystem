@@ -4,19 +4,34 @@
     ViewData["Title"] = "Detalhes da categoria";
 }
 
-<div>
-    <table class="table table-hover">
-        <thead>
-            <tr>
-                <th>@Html.DisplayNameFor(model => model.Name)</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>
-                    @Html.DisplayFor(model => Model.Name)
-                </td>
-            </tr>
-        </tbody>
-    </table>
+<div class="d-flex justify-content-center mt-4">
+    <div class="card">
+        <div class="card-header">
+            <h3 class="display-5">Detalhes de Categoria</h3>
+            <div class="d-flex justify-content-end">
+                <a class="btn btn-link" asp-action="Index">Voltar</a>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive table-responsive-sm">
+                <table class="table table-sm">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>@Html.DisplayNameFor(model => model.Id)</th>
+                            <th>@Html.DisplayNameFor(model => model.Name)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>@Html.DisplayFor(model => Model.Id)</td>
+                            <td>@Html.DisplayFor(model => Model.Name)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </div>
+
+
+

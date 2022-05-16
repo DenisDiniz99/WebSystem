@@ -4,97 +4,106 @@
     ViewData["Title"] = "Novo fornecedor";
 }
 
-<div>
-    <form asp-action="Create">
-        <div class="mb-3">
-            <label asp-for="Name" class="col-form-label"></label>
-            <input asp-for="Name" class="form-control form-control-sm form-text text-dark" placeholder="Nome do fornecedor"/>
-            <span asp-validation-for="Name" class="text-danger"></span>
+<div class="d-flex justify-content-center mt-4">
+    <div class="card mx-auto">
+        <div class="card-header">
+            <h3 class="display-5">Novo Fornecedor</h3>
         </div>
+        <div class="card-body">
+            <form asp-action="Create">
+                <div class="m-2">
+                    <label asp-for="Name" class="form-label"></label>
+                    <input asp-for="Name" class="form-control form-control-sm form-text text-dark" placeholder="Nome do fornecedor" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
 
-        <div class="mb-3">
-            <label asp-for="CorporateName" class="col-form-label"></label>
-            <input asp-for="CorporateName" class="form-control form-control-sm form-text text-dark" placeholder="Razão Social do fornecedor" />
-            <span asp-validation-for="CorporateName" class="text-danger"></span>
+                <div class="m-2">
+                    <label asp-for="CorporateName" class="form-label"></label>
+                    <input asp-for="CorporateName" class="form-control form-control-sm form-text text-dark" placeholder="Razão Social do fornecedor" />
+                    <span asp-validation-for="CorporateName" class="text-danger"></span>
+                </div>
+
+                <div class="m-2">
+                    <label asp-for="Description" class="form-label"></label>
+                    <input asp-for="Description" class="form-control form-control-sm form-text text-dark" placeholder="Nome do fornecedor" />
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+
+                <div class="m-2">
+                    <label asp-for="Phone" class="form-label"></label>
+                    <input asp-for="Phone" class="form-control form-control-sm form-text text-dark" placeholder="Telefone do fornecedor" />
+                    <span asp-validation-for="Phone" class="text-danger"></span>
+                </div>
+
+                <div class="m-2">
+                    <label asp-for="Contact" class="form-label"></label>
+                    <input asp-for="Contact" class="form-control form-control-sm form-text text-dark" placeholder="Nome de contato" />
+                    <span asp-validation-for="Contact" class="text-danger"></span>
+                </div>
+
+                <div class="m-2">
+                    <label asp-for="Document.Type" class="form-label"></label>
+                    <select class="form-select form-select-sm" aria-label="DocumentType" asp-for="Document.Type">
+                        <option selected>Escolha uma opção</option>
+                        <option value="1">CPF</option>
+                        <option value="2">CNPJ</option>
+                    </select>
+                    <span asp-validation-for="Document.Type" class="text-danger"></span>
+                </div>
+
+                <div class="m-2">
+                    <label asp-for="Document.Number" class="form-label"></label>
+                    <input asp-for="Document.Number" class="form-control form-control-sm form-text text-dark" placeholder="Número do documento" />
+                    <span asp-validation-for="Document.Number" class="text-danger"></span>
+                </div>
+
+                <div class="m-2">
+                    <label asp-for="Email" class="form-label"></label>
+                    <input asp-for="Email.EmailAddress" class="form-control form-control-sm form-text text-dark" placeholder="Endereço de e-mail" />
+                    <span asp-validation-for="Email.EmailAddress" class="text-danger"></span>
+                </div>
+
+                <div class="m-2">
+                    <label asp-for="Address.Street" class="form-label"></label>
+                    <input asp-for="Address.Street" class="form-control form-control-sm form-text text-dark" placeholder="Nome da rua" />
+                    <span asp-validation-for="Address.Street" class="text-danger"></span>
+                </div>
+
+                <div class="m-2">
+                    <label asp-for="Address.Number" class="form-label"></label>
+                    <input asp-for="Address.Number" class="form-control form-control-sm form-text text-dark" placeholder="Número do endereço" />
+                    <span asp-validation-for="Address.Number" class="text-danger"></span>
+                </div>
+
+                <div class="m-2">
+                    <label asp-for="Address.Neighborhood" class="form-label"></label>
+                    <input asp-for="Address.Neighborhood" class="form-control form-control-sm form-text text-dark" placeholder="Nome do bairro" />
+                    <span asp-validation-for="Address.Neighborhood" class="text-danger"></span>
+                </div>
+
+                <div class="m-2">
+                    <label asp-for="Address.City" class="form-label"></label>
+                    <input asp-for="Address.City" class="form-control form-control-sm form-text text-dark" placeholder="Nome da cidade" />
+                    <span asp-validation-for="Address.City" class="text-danger"></span>
+                </div>
+
+                <div class="m-2">
+                    <label for="state" class="form-label" title="Estado">Estado</label>
+                    <input asp-for="Address.State" class="form-control form-control-sm form-text text-dark" placeholder="Nome do estado" />
+                    <span asp-validation-for="Address.State" class="text-danger"></span>
+                </div>
+
+                <div class="m-2">
+                    <label asp-for="Address.ZipCode" class="form-label"></label>
+                    <input asp-for="Address.ZipCode" class="form-control form-control-sm form-text text-dark" placeholder="Número do CEP" />
+                    <span asp-validation-for="Address.ZipCode" class="text-danger"></span>
+                </div>
+
+                <div class="m-2">
+                    <input type="submit" class="btn btn-sm btn-success btn-form m2-2" title="Cadastrar" />
+                    <a class="btn btn-sm btn-danger btn-form" asp-action="Index">Cancelar</a>
+                </div>
+            </form>
         </div>
-
-        <div class="mb-3">
-            <label asp-for="Description" class="col-form-label"></label>
-            <input asp-for="Description" class="form-control form-control-sm form-text text-dark" placeholder="Nome do fornecedor" />
-            <span asp-validation-for="Description" class="text-danger"></span>
-        </div>
-
-        <div class="mb-3">
-            <label asp-for="Phone" class="col-form-label"></label>
-            <input asp-for="Phone" class="form-control form-control-sm form-text text-dark" placeholder="Telefone do fornecedor" />
-            <span asp-validation-for="Phone" class="text-danger"></span>
-        </div>
-
-        <div class="mb-3">
-            <label asp-for="Contact" class="col-form-label"></label>
-            <input asp-for="Contact" class="form-control form-control-sm form-text text-dark" placeholder="Nome de contato" />
-            <span asp-validation-for="Contact" class="text-danger"></span>
-        </div>
-
-        <div class="mb-3">
-            <label asp-for="Document.Type" class="col-form-label"></label>
-            <select class="form-select form-select-sm" aria-label="DocumentType" asp-for="Document.Type" >
-                <option selected>Escolha uma opção</option>
-                <option value="1">CPF</option>
-                <option value="2">CNPJ</option>
-            </select>
-            <span asp-validation-for="Document.Type" class="text-danger"></span>
-        </div>
-
-        <div class="mb-3">
-            <label asp-for="Document.Number" class="col-form-label"></label>
-            <input asp-for="Document.Number" class="form-control form-control-sm form-text text-dark" placeholder="Número do documento"  />
-            <span asp-validation-for="Document.Number" class="text-danger"></span>
-        </div>
-
-        <div class="mb-3">
-            <label asp-for="Email" class="col-form-label"></label>
-            <input asp-for="Email.EmailAddress" class="form-control form-control-sm form-text text-dark" placeholder="Endereço de e-mail" />
-            <span asp-validation-for="Email.EmailAddress" class="text-danger"></span>
-        </div>
-
-        <div class="mb-3">
-            <label asp-for="Address.Street" class="col-form-label"></label>
-            <input asp-for="Address.Street" class="form-control form-control-sm form-text text-dark" placeholder="Nome da rua" />
-            <span asp-validation-for="Address.Street" class="text-danger"></span>
-        </div>
-
-        <div class="mb-3">
-            <label asp-for="Address.Number" class="col-form-label"></label>
-            <input asp-for="Address.Number" class="form-control form-control-sm form-text text-dark" placeholder="Número do endereço" />
-            <span asp-validation-for="Address.Number" class="text-danger"></span>
-        </div>
-
-        <div class="mb-3">
-            <label asp-for="Address.Neighborhood" class="col-form-label"></label>
-            <input asp-for="Address.Neighborhood" class="form-control form-control-sm form-text text-dark" placeholder="Nome do bairro" />
-            <span asp-validation-for="Address.Neighborhood" class="text-danger"></span>
-        </div>
-
-        <div class="mb-3">
-            <label asp-for="Address.City" class="col-form-label"></label>
-            <input asp-for="Address.City" class="form-control form-control-sm form-text text-dark" placeholder="Nome da cidade" />
-            <span asp-validation-for="Address.City" class="text-danger"></span>
-        </div>
-
-        <div class="mb-3">
-            <label for="state" class="col-form-label" title="Estado">Estado</label>
-            <input asp-for="Address.State" class="form-control form-control-sm form-text text-dark" placeholder="Nome do estado" />
-            <span asp-validation-for="Address.State" class="text-danger"></span>
-        </div>
-
-        <div class="mb-3">
-            <label asp-for="Address.ZipCode" class="col-form-label"></label>
-            <input asp-for="Address.ZipCode" class="form-control form-control-sm form-text text-dark" placeholder="Número do CEP"/>
-            <span asp-validation-for="Address.ZipCode" class="text-danger"></span>
-        </div>
-
-        <input type="submit" class="btn btn-sm btn-success mr-2" title="Cadastrar" />
-        <a class="btn btn-sm btn-danger" asp-action="Index">Cancelar</a>
-    </form>
+    </div>
 </div>

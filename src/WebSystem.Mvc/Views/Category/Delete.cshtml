@@ -6,10 +6,11 @@
 
 <div>
     <form asp-action="Delete">
-        <label asp-for="Name" class="col-form-label"></label>
-        <input asp-for="Name" class="form-control form-control-sm form-text text-dark"/>
-        <span asp-validation-for="Name" class="text-danger"></span>
-        <br />
+        <div class="m-2">
+            <label asp-for="Name" class="col-form-label"></label>
+            <input asp-for="Name" class="form-control form-control-sm form-text text-dark" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
         <input type="submit" class="btn btn-sm btn-success mr-2" title="Deletar" />
         <a class="btn btn-sm btn-danger" asp-action="Index">Cancelar</a>
     </form>

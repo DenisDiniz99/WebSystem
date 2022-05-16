@@ -4,57 +4,62 @@
     ViewData["Title"] = "Novo Produto";
 }
 
-<div class="container">
-    <form enctype="multipart/form-data" asp-action="Create">
-        <div class="mb-3">
-            <label asp-for="ImageUpload" class="control-label"></label>
-
-                <div class="custom-file">
-                    <input type="file" class="col-form-label" id="ImageUpload" asp-for="ImageUpload">
-                    <label data-browse="Buscar imagem" class="input-group" for="ImageUpload"></label>
-                    <label style="display: none" id="img_nome"></label>
+<div class="d-flex justify-content-center mt-4">
+    <div class="card mx-auto">
+        <div class="card-header">
+            <h3 class="display-5">Novo Produto</h3>
+        </div>
+        <div class="card-body">
+            <form enctype="multipart/form-data" asp-action="Create">
+                <div class="m-2">
+                    <label asp-for="ImageUpload" class="form-label"></label>
+                    <div class="custom-file">
+                        <input type="file" class="col-form-label" id="ImageUpload" asp-for="ImageUpload">
+                        <label data-browse="Buscar imagem" class="input-group" for="ImageUpload"></label>
+                        <label style="display: none" id="img_nome"></label>
+                    </div>
+                    <span asp-validation-for="ImageUpload" class="text-danger"></span>
                 </div>
 
-                <span asp-validation-for="ImageUpload" class="text-danger"></span>
+                <div class="m-2">
+                    <label asp-for="Name" class="form-label"></label>
+                    <input asp-for="Name" class="form-control form-control-sm form-text text-dark" placeholder="Nome do produto" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+
+                <div class="m-2">
+                    <label asp-for="Description" class="form-label"></label>
+                    <textarea cols="40" rows="5" asp-for="Description" class="form-control form-control-sm form-text text-dark" placeholder="Descrição do produto"></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+
+                <div class="m-2">
+                    <label asp-for="Price" class="form-label"></label>
+                    <input asp-for="Price" class="form-control form-control-sm form-text text-dark" placeholder="Valor unitário do produto" />
+                    <span asp-validation-for="Price" class="text-danger"></span>
+                </div>
+
+                <div class="m-2">
+                    <label asp-for="SupplierId" class="form-label"></label>
+                    <select asp-for="SupplierId" aria-label="SupplierId" class="form-control form-control-sm form-text text-dark" asp-items="@(new SelectList(Model.Suppliers, "Id", "Name"))">
+                        <option selected>Escolha um Fornecedor</option>
+                    </select>
+                    <span asp-validation-for="SupplierId" class="text-danger"></span>
+                </div>
+
+                <div class="m-2">
+                    <label asp-for="CategoryId" class="form-label"></label>
+                    <select asp-for="CategoryId" aria-label="CategoryId" class="form-control form-control-sm form-text text-dark" asp-items="@(new SelectList(Model.Categories, "Id", "Name"))">
+                        <option selected>Escolha uma Categoria</option>
+                    </select>
+                    <span asp-validation-for="CategoryId" class="text-danger"></span>
+                </div>
+
+                <div class="m-2">
+                    <input type="submit" class="btn btn-sm btn-success btn-form me-2" title="Cadastrar" />
+                    <a class="btn btn-sm btn-danger btn-form" asp-action="Index">Cancelar</a>
+                </div>
+            </form>
         </div>
-
-        <div class="mb-3">
-            <label asp-for="Name" class="col-form-label"></label>
-            <input asp-for="Name" class="form-control form-control-sm form-text text-dark" placeholder="Nome do produto" />
-            <span asp-validation-for="Name" class="text-danger"></span>
-        </div>
-
-        <div class="mb-3">
-            <label asp-for="Description" class="col-form-label"></label>
-            <textarea cols="40" rows="5" asp-for="Description" class="form-control form-control-sm form-text text-dark" placeholder="Descrição do produto"></textarea>
-            <span asp-validation-for="Description" class="text-danger"></span>
-        </div>
-
-        <div class="mb-3">
-            <label asp-for="Price" class="col-form-label"></label>
-            <input asp-for="Price" class="form-control form-control-sm form-text text-dark" placeholder="Valor unitário do produto" />
-            <span asp-validation-for="Price" class="text-danger"></span>
-        </div>
-
-        <div class="mb-3">
-            <label asp-for="SupplierId" class="col-form-label"></label>
-                <select asp-for="SupplierId" aria-label="SupplierId" class="form-control form-control-sm form-text text-dark" asp-items="@(new SelectList(Model.Suppliers, "Id", "Name"))">
-                    <option selected>Escolha um Fornecedor</option>
-                </select>
-
-                <span asp-validation-for="SupplierId" class="text-danger"></span>
-        </div>
-
-        <div class="mb-3">
-            <label asp-for="CategoryId" class="col-form-label"></label>
-            <select asp-for="CategoryId" aria-label="CategoryId" class="form-control form-control-sm form-text text-dark" asp-items="@(new SelectList(Model.Categories, "Id", "Name"))">
-                <option selected>Escolha uma Categoria</option>
-            </select>
-
-            <span asp-validation-for="CategoryId" class="text-danger"></span>
-        </div>
-
-        <input type="submit" class="btn btn-sm btn-success mr-2" title="Cadastrar" />
-        <a class="btn btn-sm btn-danger" asp-action="Index">Cancelar</a>
-    </form>
+    </div>
 </div>

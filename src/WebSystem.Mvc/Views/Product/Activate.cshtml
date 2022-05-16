@@ -4,23 +4,23 @@
     ViewData["Title"] = "Ativar o produto";
 }
 
-<div class="d-flex justify-content-center">
-    <div class="card mx-auto" style="width: 400px">
+<div class="d-flex justify-content-center mt-4">
+    <div class="card mx-auto">
+        <div class="card-header">
+            <h3 class="display-5">Ativação do Produto</h3>
+        </div>
         <div class="card-body">
-            <div class="d-fle justify-content-center">
+            <div class="m-2">
                 <img class="img-fluid" src="~/img/@Model.Image" alt="@Model.Image" />
             </div>
-            <div class="mb-3 fs-4 d-flex justify-content-center">
-                @Model.Name
+            <div class="m-2">
+                <form asp-action="Activate">
+                    <div class="m-2">
+                        <input type="submit" class="btn btn-sm btn-success btn-form me-2" name="Ativar" title="Ativar" />
+                        <a class="btn btn-sm btn-danger btn-form me-2" asp-action="Index">Cancelar</a>
+                    </div>
+                </form>
             </div>
-        </div>
-        <div class="card-footer">
-            <form asp-action="Activate">
-                <div class="d-flex justify-content-center">
-                    <input type="submit" class="btn btn-sm btn-success btn-form me-2" title="Ativar" />
-                    <a class="btn btn-sm btn-danger btn-form me-2" asp-action="Index">Cancelar</a>
-                </div>
-            </form>
         </div>
     </div>
 </div>

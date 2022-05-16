@@ -4,13 +4,23 @@
     ViewData["Title"] = "Nova categoria";
 }
 
-<div>
-    <form asp-action="Create">
-        <label asp-for="Name" class="col-form-label"></label>
-        <input asp-for="Name" class="form-control form-control-sm form-text text-dark" placeholder="Categoria" />
-        <span asp-validation-for="Name" class="text-danger"></span>
-        <br />
-        <input type="submit" class="btn btn-sm btn-success mr-2" title="Cadastrar" />
-        <a class="btn btn-sm btn-danger" asp-action="Index">Cancelar</a>
-    </form>
+<div class="d-flex justify-content-center mt-4">
+    <div class="card mx-auto">
+        <div class="card-header">
+            <h3 class="display-5">Nova Categoria</h3>
+        </div>
+        <div class="card-body">
+            <form asp-action="Create">
+                <div class="m-2">
+                    <label asp-for="Name" class="form-label"></label>
+                    <input asp-for="Name" class="form-control form-control-sm form-text text-dark" placeholder="Categoria" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="m-2">
+                    <input type="submit" class="btn btn-sm btn-success btn-form me-2" title="Cadastrar" />
+                    <a class="btn btn-sm btn-danger btn-form" asp-action="Index">Cancelar</a>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>

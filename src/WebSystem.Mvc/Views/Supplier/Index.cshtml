@@ -4,30 +4,45 @@
     ViewData["Title"] = "Lista de fornecedores";
 }
 
-<div class="d-flex">
-    <div class="p-2">
-        <h1 class="display-4">Fornecedores</h1>
-        <div class="justify-content-lg-end">
-            <a class="btn btn-primary" asp-action="Create">Novo Fornecedor</a>
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            <div class="p-0 my-3 d-flex justify-content-start">
+                <h1 class="display-4">Fornecedores</h1>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="p-0 my-4 d-flex justify-content-end">
+                <a class="btn btn-primary btn-sm me-2" asp-action="Create">Novo Fornecedor</a>
+            </div>
         </div>
     </div>
 </div>
-<div class="container">
-    <table class="table table-hover">
-        <thead>
-            <tr>
-                <th>@Html.DisplayNameFor(model => model.Name)</th>
-                <th>@Html.DisplayNameFor(model => model.CorporateName)</th>
-                <th>@Html.DisplayNameFor(model => model.Document.Number)</th>
-                <th>@Html.DisplayNameFor(model => model.Email)</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @{
-                if (Model.Any())
-                {
-                    foreach (var item in Model)
+
+<div class="table-responsive table-responsive-sm">
+    @{
+        if (!Model.Any())
+        {
+            <div class="container justify-content-center">
+                <div class="alert alert-primary text-center">
+                    <h3>Ops! Nenhum registro encontrado. Caso queira, adicione um fornecedor clicando no botão <strong>Novo Fornecedor</strong></h3>
+                </div>
+            </div>
+        }
+        else
+        {
+            <table class="table table-sm">
+                <thead class="table-dark">
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.Name)</th>
+                        <th>@Html.DisplayNameFor(model => model.CorporateName)</th>
+                        <th>@Html.DisplayNameFor(model => model.Document.Number)</th>
+                        <th>@Html.DisplayNameFor(model => model.Email)</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
                     {
                         <tr>
                             <td>@Html.DisplayFor(model => item.Name)</td>
@@ -37,30 +52,21 @@
                             <td>
                                 <div class="d-flex justify-content-end">
                                     <div class="justify-content-around">
-                                        <a class="btn btn-success btn-sm" asp-action="Details" asp-route-id="@item.Id">Exibir</a>
-                                        <a class="btn btn-warning btn-sm" asp-action="Update" asp-route-id="@item.Id">Atualizar</a>
-                                        <a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@item.Id">Remover</a>
-                                        <a class="btn btn-secondary btn-sm" asp-action="Address" asp-route-id="@item.Id">Atualizar Endereço</a>
-                                        <a class="btn btn-primary btn-sm" asp-action="Activate" asp-route-id="@item.Id">Ativar ?</a>
-                                        <a class="btn btn-primary btn-sm" asp-action="Deactivate" asp-route-id=@item.Id>Desativar ?</a>
+                                        <a class="btn btn-success btn-sm" asp-action="Details" asp-route-id="@item.Id" title="Detalhes"><i class="fas fa-search"></i></a>
+                                        <a class="btn btn-warning btn-sm" asp-action="Update" asp-route-id="@item.Id"><i class="fas fa-edit"></i></a>
+                                        <a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@item.Id" title="Excluir"><i class="fas fa-trash"></i></a>
+                                        <a class="btn btn-secondary btn-sm" asp-action="Address" asp-route-id="@item.Id" title="Atualizar Endereço do Fornecedor"><i class="fas fa-map-marked"></i></a>
+                                        <a class="btn btn-primary btn-sm" asp-action="Activate" asp-route-id="@item.Id" title="Ativar Fornecedor"><i class="fas fa-thumbs-up"></i></a>
+                                        <a class="btn btn-primary btn-sm" asp-action="Deactivate" asp-route-id=@item.Id title="Desativar Fornecedor"><i class="fas fa-thumbs-down"></i></a>
                                     </div>
                                 </div>
                             </td>
                         </tr>
                     }
-                }
-                else
-                {
-                    <tr class="">
-                        <td>Ops! Nenhum cadastro encontrado...</td>
-                        <td>
-                            <a class="btn btn-primary" asp-controller="Home" asp-action="Index">Voltar</a>
-                        </td>
-                    </tr>
-                }
-            }
-        </tbody>
-    </table>
+                </tbody>
+            </table>
+        }
+    }
 </div>
 
 
