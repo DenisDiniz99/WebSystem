@@ -11,6 +11,7 @@
         </div>
         <div class="card-body">
             <form enctype="multipart/form-data" asp-action="Update">
+                <vc:summary></vc:summary>
                 <input asp-for="Id" hidden="hidden" />
                 <div class="m-2">
                     <label class="form-label">Imagem Atual</label>
@@ -29,12 +30,12 @@
 
                 <div class="m-2">
                     <label asp-for="SupplierId" class="form-label"></label>
-                    <label class="form-label"><b>@Model.Supplier.Name</b></label>
+                    <label class="col-form-label">@Model.Supplier.Name</label>
                 </div>
 
                 <div class="m-2">
                     <label asp-for="CategoryId" class="form-label"></label>
-                    <label class="form-label"><b>@Model.Category.Name</b></label>
+                    <label class="col-form-label">@Model.Category.Name</label>
                 </div>
 
                 <div class="m-2">

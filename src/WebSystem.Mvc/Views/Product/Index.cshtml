@@ -51,11 +51,11 @@
                             <td>@Html.DisplayFor(model => item.Price)</td>
                             <td>
                                 <div class="d-flex justify-content-end">
-                                    <a class="btn btn-primary btn-sm me-2" asp-action="Details" asp-route-id="@item.Id" title="Detalhes"><i class="fas fa-search"></i></a>
+                                    <a class="btn btn-success btn-sm me-2" asp-action="Details" asp-route-id="@item.Id" title="Detalhes"><i class="fas fa-search"></i></a>
                                     <a class="btn btn-warning btn-sm me-2" asp-action="Update" asp-route-id="@item.Id" title="Atualizar"><i class="fas fa-edit"></i></a>
                                     <a class="btn btn-danger btn-sm me-2" asp-action="Delete" asp-route-id="@item.Id" title="Excluir"><i class="fas fa-trash"></i></a>
-                                    <a class="btn btn-secondary btn-sm me-2" asp-action="Activate" asp-route-id="@item.Id" title="Ativar Produto"><i class="fas fa-thumbs-up"></i></a>
-                                    <a class="btn btn-secondary btn-sm me-2" asp-action="Deactivate" asp-route-id="@item.Id" title="Desativar Produto"><i class="fas fa-thumbs-down"></i></a>
+                                    <a class="btn btn-primary btn-sm me-2" asp-action="Activate" asp-route-id="@item.Id" title="Ativar Produto"><i class="fas fa-thumbs-up"></i></a>
+                                    <a class="btn btn-primary btn-sm me-2" asp-action="Deactivate" asp-route-id="@item.Id" title="Desativar Produto"><i class="fas fa-thumbs-down"></i></a>
                                 </div>
                             </td>
                         </tr>

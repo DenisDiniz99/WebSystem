@@ -45,5 +45,4 @@ button.accept-policy {
     width: 100%;
     white-space: nowrap;
     line-height: 60px;
-    background: linear-gradient(90deg, rgba(2,0,36,1) 11%, rgba(9,9,121,1) 50%, rgba(9,21,148,1) 70%, rgba(0,212,255,1) 100%);
 }
