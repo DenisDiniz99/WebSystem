@@ -22,6 +22,8 @@ namespace WebSystem.Mvc.Services
 
         public async Task ServiceSaveAsync(string name, string corporateName, string description, string phone, string contact, Email email, Document document, Address address)
         {
+            await GetExistingSupplier(document.Number);
+
             var supplier = new Supplier(name, corporateName, description, phone, contact, email, document, address);
 
             var result = validator.Validate(supplier);
@@ -37,6 +39,8 @@ namespace WebSystem.Mvc.Services
 
         public async Task ServiceUpdateAsync(Guid id, string name, string corporateName, string description, string phone, string contact,Email email,Document document)
         {
+            await GetExistingSupplier(document.Number);
+
             var supplier = await _supplierRepository.GetByIdAsync(id);
 
             if (supplier == null)
@@ -108,6 +112,18 @@ namespace WebSystem.Mvc.Services
                 return;
 
             await _supplierRepository.DeleteAsync(id);
+        }
+
+
+        private async Task GetExistingSupplier(string documentNumber)
+        {
+            var existingSupplier = await _supplierRepository.GetExistingSupplier(documentNumber);
+
+            if (existingSupplier)
+            {
+                Execute("O número do documento já é usado por outro fornecedor.");
+                return;
+            }
         }
     }
 }
